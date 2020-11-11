@@ -7,7 +7,7 @@ import {
 
 
 
-const Header = ({header}) => {
+const Header = ({ header }) => {
     return ( 
         <View style = { styles.container } >
             <Text style={styles.title}>{header}</Text>
@@ -23,10 +23,10 @@ const styles = StyleSheet.create({
         backgroundColor: "red",
         alignItems: "center",
         justifyContent: "center",
-        paddingTop: 50
+        paddingTop: 40
     },
     title:{
-        fontSize: 24,
+        fontSize: 26,
         backgroundColor: "blue"
     }
 })
