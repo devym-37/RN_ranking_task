@@ -10,11 +10,11 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-navigation/bottom-tabs": "^5.11.1",
     "babel-plugin-root-import": "^6.6.0",
     "react": "16.13.1",
     "react-native": "0.63.3",
-    "react-native-reanimated": "^1.13.1",
-    "react-navigation-tabs": "^2.10.1"
+
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
