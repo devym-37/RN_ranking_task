@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
     Text,
     View,
@@ -21,6 +21,6 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center"
     },
-})
+});
 
 export default SettingPresenter;

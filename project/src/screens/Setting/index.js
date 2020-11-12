@@ -1,3 +1,3 @@
-import SettingContainer from '~/screens/Setting/SettingContainer'
+import SettingContainer from '~/screens/Setting/SettingContainer';
 
-export default SettingContainer
+export default SettingContainer;

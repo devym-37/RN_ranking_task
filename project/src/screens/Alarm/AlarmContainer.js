@@ -8,6 +8,6 @@ class AlarmContainer extends Component {
             <AlarmPersenter />
         )
     }
-}
+};
 
 export default AlarmContainer;

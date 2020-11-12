@@ -8,6 +8,6 @@ class HomeContainer extends Component {
             <HomePresenter />
         )
     }
-}
+};
 
 export default HomeContainer;

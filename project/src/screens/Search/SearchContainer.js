@@ -8,6 +8,6 @@ class SearchContainer extends Component {
             <SearchPresenter />
         )
     }
-}
+};
 
 export default SearchContainer;

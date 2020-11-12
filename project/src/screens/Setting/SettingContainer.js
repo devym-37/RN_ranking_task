@@ -8,6 +8,6 @@ class SettingContainer extends Component {
             <SettingPresenter />
         )
     }
-}
+};
 
 export default SettingContainer;

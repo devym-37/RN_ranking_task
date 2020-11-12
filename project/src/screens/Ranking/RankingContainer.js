@@ -13,6 +13,6 @@ class RankingContainer extends Component {
             <RankingPresenter pageTitle={pageTitle}/>
         )
     }
-}
+};
 
 export default RankingContainer;

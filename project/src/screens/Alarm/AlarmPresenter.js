@@ -1,10 +1,9 @@
-import React from 'react'
+import React from 'react';
 import {
     Text,
     View,
     StyleSheet
 } from 'react-native';
-
 
 
 const AlarmPersenter = () => {
@@ -21,6 +20,6 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center"
     },
-})
+});
 
 export default AlarmPersenter;

@@ -8,10 +8,10 @@ import {
     Text,
     StatusBar,
 } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native'
+import { NavigationContainer } from '@react-navigation/native';
 
-import Header from '~/components/Header'
-import BottomNav from '~/navigations/BottomNav'
+import Header from '~/components/Header';
+import BottomNav from '~/navigations/BottomNav';
 
 const App  = () => {
     return ( 

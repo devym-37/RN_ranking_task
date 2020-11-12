@@ -1,3 +1,3 @@
-import RankingContainer from '~/screens/Ranking/RankingContainer'
+import RankingContainer from '~/screens/Ranking/RankingContainer';
 
-export default RankingContainer
+export default RankingContainer;

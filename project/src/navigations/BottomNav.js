@@ -1,15 +1,15 @@
-import React from 'react'
+import React from 'react';
 
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import Ionicons from 'react-native-vector-icons/Ionicons'
-import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import HomeScreen from '~/screens/Home'
-import SearchScreen from '~/screens/Search'
-import RankingScreen from '~/screens/Ranking'
-import AlarmScreen from '~/screens/Alarm'
-import SettingScreen from '~/screens/Setting'
+import HomeScreen from '~/screens/Home';
+import SearchScreen from '~/screens/Search';
+import RankingScreen from '~/screens/Ranking';
+import AlarmScreen from '~/screens/Alarm';
+import SettingScreen from '~/screens/Setting';
 
 Ionicons.loadFont();
 SimpleLineIcons.loadFont();
@@ -71,12 +71,7 @@ const BottomNav = () => {
             </Tab.Navigator>
         </>
     )
-}
+};
 
-// home-outline
-// search-outline
-// trophy-outline
-// notifications-outline -> Ionicons
-// emotsmile -> SimpleLineIcons
 
 export default BottomNav;

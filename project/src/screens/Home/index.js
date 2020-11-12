@@ -1,3 +1,3 @@
-import HomeContainer from '~/screens/Home/HomeContainer'
+import HomeContainer from '~/screens/Home/HomeContainer';
 
-export default HomeContainer
+export default HomeContainer;
