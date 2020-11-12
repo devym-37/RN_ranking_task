@@ -1,11 +1,4 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
+import 'react-native-gesture-handler';
 import React from 'react';
 import {
     SafeAreaView,
@@ -15,17 +8,16 @@ import {
     Text,
     StatusBar,
 } from 'react-native';
-
+import { NavigationContainer } from '@react-navigation/native'
 
 import Header from '~/components/Header'
-import Footer from '~/components/Footer'
+import BottomNav from '~/navigations/BottomNav'
 
 const App  = () => {
     return ( 
-        <>
-            <Header header={"랭킹"}/>
-
-        </>
+        <NavigationContainer>
+            <BottomNav />
+        </NavigationContainer>
     );
 };
 
