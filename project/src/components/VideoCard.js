@@ -33,8 +33,9 @@ const styles = StyleSheet.create({
     container :{
         flexDirection: "row", 
         width: Width - 50, 
-        height: 75, 
-        marginBottom: 10
+        height: 75,
+        marginTop: 7, 
+        marginBottom: 3
     },
     gradeContainer:{
         justifyContent: "center", 
