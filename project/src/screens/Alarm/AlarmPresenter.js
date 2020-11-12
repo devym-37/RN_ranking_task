@@ -10,7 +10,7 @@ import {
 const AlarmPersenter = () => {
     return ( 
         <View style = { styles.container } >
-            <Text>Alarm</Text>
+            <Text>Notification</Text>
         </View > 
         );
 };
