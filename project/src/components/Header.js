@@ -17,17 +17,15 @@ const Header = ({ header }) => {
 
 const styles = StyleSheet.create({
     container: {
-        display: "flex",
-        flexDirection: "row",
-        height: 100,
-        backgroundColor: "red",
+        height: 80,
         alignItems: "center",
         justifyContent: "center",
-        paddingTop: 40
+        paddingTop: 40,
+
     },
     title:{
-        fontSize: 26,
-        backgroundColor: "blue"
+        fontSize: 20,
+        fontWeight: "600"
     }
 })
 
