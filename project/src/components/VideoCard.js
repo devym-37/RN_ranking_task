@@ -13,7 +13,7 @@ const VideoCard = ({ data, index }) => {
     return (
         <View style = { styles.container }>
             <View style = { styles.gradeContainer }>
-                <Text style = { styles.grade }>{`${index}`}</Text>
+                <Text style = { styles.grade }>{`${index + 1}`}</Text>
                 <Text style = {{ fontSize: 18, color: "#C7C7C8"}}>{`-`}</Text>
             </View>
             <View style = { styles.imageContainer }>

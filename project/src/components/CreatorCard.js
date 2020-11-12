@@ -16,7 +16,7 @@ const CreatorCard = ({ creator, index }) => {
     return (
         <View style = { styles.container }>
             <View style = { styles.gradeContainer }>
-                <Text style = { styles.grade }>{`${index}`}</Text>
+                <Text style = { styles.grade }>{`${index + 1}`}</Text>
                 <Text style = {{ fontSize: 18, color: "#C7C7C8"}}>{`-`}</Text>
             </View>
             <View style = { styles.imageContainer }>
@@ -26,11 +26,17 @@ const CreatorCard = ({ creator, index }) => {
                 <Text style ={ styles.title }>{`${creator.name}`}</Text>
                 <View style = { styles.tagContainer }>
                     <Text style = { styles.likes }>
-                        <Ionicons name="heart-outline" color={"#C7C7C8"} size={15} style={{marginRight:40}}/>
-                        <Text style={{ marginLeft: 10 }}>{`${creator.likes}`}</Text>
+                        <View>
+                            <Ionicons name="heart-outline" color={"#C7C7C8"} size={15} style={{textAlign:"center", marginRight:5, justifyContent: 'center', alignItems: 'center', }}/>
+                        </View>
+                        {`${creator.likes}`}
                     </Text>
-                    <Text style = { styles.tag }>
-                    <Ionicons name="play-outline" color={"#C7C7C8"} size={15} style={{marginRight:40}}/>{`${creator.views} `}</Text>
+                    <Text style = { styles.views }>
+                        <View>
+                            <Ionicons name="play-outline" color={"#C7C7C8"} size={15} style={{ textAlign:"center", marginRight: 5 }}/>
+                        </View>
+                        {`${creator.views} `}
+                    </Text>
                 </View>
             </View>
         </View>
@@ -75,13 +81,16 @@ const styles = StyleSheet.create({
     tagContainer:{
         flexDirection: "row",
         alignItems: 'center',
+        justifyContent: 'flex-start',
     },
     likes:{
         color: "#C7C7C8",
-        marginRight: 10
+        marginRight: 10,
     },
-    tag:{
+    views:{
         color: "#C7C7C8",
+        alignItems: 'center',
+        justifyContent: 'center',
     }
 })
 
