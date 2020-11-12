@@ -2,15 +2,18 @@ import React from 'react';
 import {
     Text,
     View,
-    StyleSheet
+    StyleSheet,
+    ScrollView
 } from 'react-native';
 
+import CreatorCard from '~/components/CreatorCard';
 
-
-const RankingCreatorPresenter = () => {
+const RankingCreatorPresenter = ({ creators }) => {
     return ( 
         <View style = { styles.container } >
-            <Text>RankingCreatorPresenter</Text>
+            <ScrollView showsVerticalScrollIndicator={false}>
+                { creators.length !== 0 ? creators.map((creator, index) => <CreatorCard key={index} creator={creator} index={index} /> ) : null}
+            </ScrollView>
         </View > 
         );
 };
@@ -18,8 +21,8 @@ const RankingCreatorPresenter = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: "center",
-        alignItems: "center"
+        alignItems: 'center',
+        backgroundColor: "#FFF",
     },
 })
 
