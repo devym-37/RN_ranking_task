@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     gradeContainer:{
         justifyContent: "center", 
         alignItems: "center", 
-        width: 30, 
+        width: 35, 
         marginRight: 5
     },
     grade:{
