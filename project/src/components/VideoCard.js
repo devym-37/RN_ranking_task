@@ -9,7 +9,9 @@ import {
 
 const Width = Dimensions.get("window").width;
 
-const VideoCard = ({ data, index }) => {
+const VideoCard = ({ item }) => {
+    console.log('item.length', item.index);
+    const {index, item:{tag, thumbNailImg, title}} = item;
     return (
         <View style = { styles.container }>
             <View style = { styles.gradeContainer }>
@@ -17,12 +19,12 @@ const VideoCard = ({ data, index }) => {
                 <Text style = {{ fontSize: 18, color: "#C7C7C8"}}>{`-`}</Text>
             </View>
             <View style = { styles.imageContainer }>
-                <Image style = { styles.image } source = {{uri: `${data.thumbNailImg}`}} />
+                <Image style = { styles.image } source = {{uri: `${thumbNailImg}`}} />
             </View>
             <View style = { styles.titleContainer }>
-                <Text style ={ styles.title }>{`${data.title.length > 11 ? `${data.title.slice(0, 10)}...` : data.title}`}</Text>
+                <Text style ={ styles.title }>{`${title.length > 11 ? `${title.slice(0, 10)}...` : title}`}</Text>
                 <View style = { styles.tagContainer }>
-                    { data.tag.map(item => <Text style = { styles.tag }>{`#${item} `}</Text>) }
+                    { tag.map((item, index) => <Text key={index.toString()} style = { styles.tag }>{`#${item} `}</Text>) }
                 </View>
             </View>
         </View>
