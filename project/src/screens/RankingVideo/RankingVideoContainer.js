@@ -1,59 +1,84 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { View, ActivityIndicator, Alert } from 'react-native';
 import RankingVideoPresenter from '~/screens/RankingVideo/RankingVideoPresenter';
+import VideoCard from '~/components/VideoCard';
 
 import RankingVideo from '~/popularVideoData';
 
-class RankingVideoContainer extends Component {
-    state = {
-        rankingVideo: [],
-        loading: false,
-        startIndex: 0,
-        endIndex: null,
-        offset: 10,
+const FETCHDATA_START_OFFSET = 5;
+const FETCHDATA_MORE_OFFSET = 10;
+
+function RankingVideoContainer() {
+    const [rankingVideo, setRankingVideo] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [startIndex, setStartIndex] = useState(0);
+    const [endIndex, setEndIndex] = useState(15);
+    const [isFetching, setIsFetching] = useState(false);
+
+    const  position  = useSelector((state) => state.PositionReducer.position);
+
+    const _getData = async () => {
+        setIsFetching(true);
+        console.log('startIndex----getData', startIndex)
+        console.log('rankingVideo----getData', rankingVideo)
+        setRankingVideo(rankingVideo.concat(RankingVideo.slice(0, startIndex + FETCHDATA_MORE_OFFSET)));
+        setStartIndex(startIndex + FETCHDATA_MORE_OFFSET);
+        console.log('rankingVideo.lenght-----getData', rankingVideo.length)
+        await _delayFetch();
     }
 
-    componentDidMount(){
-        const { _getData } = this;
-        _getData();
-    }
-
-    _convertLoading = () => {
-        this.setState({
-            loading: true
-        })
-    }
-
-    _getData =() => {
-        const { rankingVideo, offset, startIndex } = this.state;
-        const fetchData = RankingVideo;
-        const sliceData = rankingVideo.concat(fetchData.slice(startIndex, startIndex + offset));
-
-        this.setState({
-            rankingVideo: sliceData,
-            loading: false,
-            startIndex: startIndex + offset
-        })
-    }
-
-    _onEndReached = () => {
-        const { loading } = this.state;
-        const { _getData } = this;
-        if(loading){
+    const _delayFetch = useCallback(() => {
+        setTimeout(() => {
+            setIsFetching(false);
+        }, 8000);
+    }, [])
+    
+    const _onEndReached = () => {
+        if(isFetching){
             return;
-        } else {
+        }else{
             _getData();
         }
     }
 
-
-    render(){
-        const { rankingVideo, loading } = this.state;
-        const { _getData, _onEndReached, _convertLoading } = this;
-
+    const _renderItem = useCallback((item, index) => {
         return (
-            <RankingVideoPresenter loading={loading} data={ rankingVideo } _getData={_getData} _onEndReached={_onEndReached} _convertLoading={_convertLoading}/>
+            <VideoCard key={`${item, index}`} item={item} />
+        )
+    }, [])
+
+    const _keyExtractor = useCallback((item, index) => {
+        return index.toString();
+    }, [])
+    
+    useEffect(() => {
+        _getData();
+    }, [])
+
+    if(loading && !rankingVideo){
+        return(
+            <View style={{flex: 1, justifyContent: "center"}}>
+                <ActivityIndicator />
+            </View>
         )
     }
+    console.log('position------>>>', position);
+    console.log('startIndex---beforeRender', rankingVideo.length);
+    console.log('isFetching-----beforeRender ', isFetching);
+    return (
+        <RankingVideoPresenter  
+            data={ rankingVideo } 
+            getData={ _getData } 
+            onEndReached={ _onEndReached }
+            renderItem={ _renderItem }
+            keyExtractor={ _keyExtractor }
+            isFetching={isFetching}
+            position={position}
+        />
+    )
 };
+
+
 
 export default RankingVideoContainer;

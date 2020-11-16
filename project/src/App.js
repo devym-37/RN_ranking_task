@@ -1,5 +1,7 @@
 import 'react-native-gesture-handler';
 import React from 'react';
+import { Provider } from 'react-redux';
+import { store } from '~/redux/store/store';
 import {
     SafeAreaView,
     StyleSheet,
@@ -15,9 +17,11 @@ import BottomNav from '~/navigations/BottomNav';
 
 const App  = () => {
     return ( 
-        <NavigationContainer>
-            <BottomNav />
-        </NavigationContainer>
+        <Provider store={store}>
+            <NavigationContainer>
+                <BottomNav />
+            </NavigationContainer>
+        </Provider>
     );
 };
 

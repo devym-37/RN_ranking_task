@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import {
     Text,
     View,
@@ -13,27 +13,42 @@ import VideoCard from '~/components/VideoCard';
 
 const Width = Dimensions.get("window").width;
 
-const RankingVideoPresenter = ({ loading, data, _getData, _onEndReached, _convertLoading  }) => {
-    console.log('data', loading)
+const RankingVideoPresenter = ({  
+    data, 
+    getData, 
+    onEndReached,
+    renderItem, 
+    keyExtractor,
+    isFetching,
+    position
+}) => {
+    
+    const renderListFooterComponent = useMemo(() => {
+        if(!isFetching) return null;
+        return(
+            <View style={{flex: 1, height: 50, justifyContent: "center"}}>
+                <ActivityIndicator size="large" color="#e91e63" />
+            </View>
+        )
+    }, [isFetching])
+
     return ( 
         <View style = { styles.container } >
             <View style={ styles.notifications}>
-                <Text>{"Front Data"}</Text>
-                <Text>{"Current Data"}</Text>
-                <Text>{"Back Data"}</Text>
+                <Text>{`현재 마지막 위치 data 번호 ${position}`}</Text>
+                <Text>{`현재 import data ${data.length} 개`}</Text>
             </View>
-            { data.length !== 0 ? <FlatList 
+            <FlatList 
               data={data}
-              renderItem={(item, index) => <VideoCard key={`${item.index}`} item={item} />}
-              keyExtractor={(item, index) => index.toString()}
-              onEndReached={_onEndReached}
-            //   initialNumToRender={15}
-              onScroll={_convertLoading}
-              windowSize={2}
-              ListFooterComponent={() => loading && <View style={{flex: 1, justifyContent: "center"}}><ActivityIndicator /></View>}
-            /> : null}
+              renderItem={renderItem}
+              keyExtractor={keyExtractor}
+              onEndReached={onEndReached}
+              onEndReachedThreshold={1}
+              windowSize={1}
+              ListFooterComponent={renderListFooterComponent}
+            />
         </View > 
-        );
+    );
 };
 
 const styles = StyleSheet.create({

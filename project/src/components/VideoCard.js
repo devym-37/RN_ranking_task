@@ -3,9 +3,12 @@ import {Text, View, Image, StyleSheet, Dimensions} from 'react-native';
 
 const Width = Dimensions.get('window').width;
 
-const VideoCard = ({item, index}) => {
-  console.log('item.length', index);
-  const {tag, thumbNailImg, title} = item;
+const VideoCard = ({item}) => {
+  console.log('item.length_', item.index);
+
+  
+
+  const {index, item: {tag, thumbNailImg, title}} = item;
   return (
     <View style={styles.container}>
       <View style={styles.gradeContainer}>
@@ -72,4 +75,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default React.memo(VideoCard);
+export default VideoCard;
