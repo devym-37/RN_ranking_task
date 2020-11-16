@@ -4,11 +4,11 @@ import {Text, View, Image, StyleSheet, Dimensions} from 'react-native';
 const Width = Dimensions.get('window').width;
 
 const VideoCard = ({item}) => {
-  console.log('item.length_', item.index);
+  const {
+    index,
+    item: {tag, thumbNailImg, title},
+  } = item;
 
-  
-
-  const {index, item: {tag, thumbNailImg, title}} = item;
   return (
     <View style={styles.container}>
       <View style={styles.gradeContainer}>

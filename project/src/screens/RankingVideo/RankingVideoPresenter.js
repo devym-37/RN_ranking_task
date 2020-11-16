@@ -1,68 +1,79 @@
-import React, {useMemo} from 'react';
+import React, {useMemo, useCallback} from 'react';
 import {
-    Text,
-    View,
-    StyleSheet,
-    ScrollView,
-    FlatList,
-    Dimensions,
-    ActivityIndicator
+  Text,
+  View,
+  StyleSheet,
+  ScrollView,
+  FlatList,
+  Dimensions,
+  ActivityIndicator,
 } from 'react-native';
 
-import VideoCard from '~/components/VideoCard';
+const Width = Dimensions.get('window').width;
 
-const Width = Dimensions.get("window").width;
-
-const RankingVideoPresenter = ({  
-    data, 
-    getData, 
-    onEndReached,
-    renderItem, 
-    keyExtractor,
-    isFetching,
-    position
+const RankingVideoPresenter = ({
+  data,
+  renderItem,
+  keyExtractor,
+  isFetching,
+  onEndReached,
 }) => {
-    
-    const renderListFooterComponent = useMemo(() => {
-        if(!isFetching) return null;
-        return(
-            <View style={{flex: 1, height: 50, justifyContent: "center"}}>
-                <ActivityIndicator size="large" color="#e91e63" />
-            </View>
-        )
-    }, [isFetching])
+  console.log('data.length ====== >', data.length);
+  const renderListFooterComponent = useMemo(() => {
+    if (!isFetching) return null;
 
-    return ( 
-        <View style = { styles.container } >
-            <View style={ styles.notifications}>
-                <Text>{`현재 마지막 위치 data 번호 ${position}`}</Text>
-                <Text>{`현재 import data ${data.length} 개`}</Text>
-            </View>
-            <FlatList 
-              data={data}
-              renderItem={renderItem}
-              keyExtractor={keyExtractor}
-              onEndReached={onEndReached}
-              onEndReachedThreshold={1}
-              windowSize={1}
-              ListFooterComponent={renderListFooterComponent}
-            />
-        </View > 
+    return (
+      <View style={{flex: 1, justifyContent: 'center'}}>
+        <ActivityIndicator size="large" />
+        <Text style={{fontSize: 16}}>Loading More</Text>
+      </View>
     );
+  }, [isFetching]);
+
+  const renderOnViewableItemsChanged = useCallback(
+    ({viewableItems, changed}) => {
+      console.log('viewableItems', viewableItems);
+      console.log('changed', changed);
+    },
+    [],
+  );
+
+  const _viewabilityConfig = {
+    itemVisiblePercentThreshold: 50,
+  };
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.notifications}>
+        <Text>{`Display ${data.length} Items`}</Text>
+        <Text>{`Current Item : `}</Text>
+      </View>
+      <FlatList
+        data={data}
+        onViewableItemsChanged={renderOnViewableItemsChanged}
+        viewabilityConfig={_viewabilityConfig}
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
+        onEndReached={onEndReached}
+        onEndReachedThreshold={0.1}
+        ListFooterComponent={renderListFooterComponent}
+      />
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: "center",
-        backgroundColor: "#FFF"
-    },
-    notifications:{ 
-        marginTop: 10, 
-        marginBottom: 10, 
-        width: Width, 
-        marginLeft: 60 
-    }
-})
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: '#FFF',
+  },
+  notifications: {
+    marginTop: 10,
+    marginBottom: 10,
+    width: Width,
+    marginLeft: 60,
+  },
+});
 
 export default RankingVideoPresenter;
