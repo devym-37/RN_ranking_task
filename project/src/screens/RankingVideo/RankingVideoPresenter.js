@@ -57,6 +57,7 @@ const RankingVideoPresenter = ({
         onEndReached={onEndReached}
         onEndReachedThreshold={0.1}
         ListFooterComponent={renderListFooterComponent}
+        removeClippedSubviews={true}
       />
     </View>
   );
